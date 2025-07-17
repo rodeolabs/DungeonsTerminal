@@ -50,6 +50,37 @@ Before marking any task complete:
 - [ ] All links work
 
 **Keep it simple - focus on keeping these 4 core files synchronized!**
+
+## 🤖 AUTOMATED FEEDBACK SYSTEM
+
+We have Claude Code GitHub integration that provides **automatic feedback** when you deploy code:
+
+### **Auto-Triggers:**
+- **Every push to main** - Reviews all code changes
+- **Every pull request** - Validates changes before merge
+- **Manual requests** - Direct Claude assistance via GitHub Actions
+
+### **Automated Analysis Includes:**
+1. **Code Quality Review** - Bugs, TypeScript, security
+2. **RPG-Specific Analysis** - D&D 5E mechanics, AI integration
+3. **Documentation Sync** - Updates TODO.md, README.md if needed
+4. **Deployment Readiness** - Production safety checks
+5. **Next Steps** - Actionable recommendations
+
+### **How to Use:**
+1. **Automatic**: Just push code - Claude analyzes automatically
+2. **Manual**: Go to GitHub Actions → Claude Code → Run workflow
+3. **Results**: Check GitHub Actions output for detailed feedback
+
+### **Benefits:**
+- **Continuous improvement** on every deployment
+- **Catches issues** before they become problems
+- **Keeps documentation synced** automatically
+- **RPG-specific guidance** for game development
+- **Always up-to-date** project state
+
+**This means you get expert AI feedback on every code change! 🎯**
+
 Always keep the TODO.md in root updated.
 Use the logging console we implemented to get logs.
 Use detailled todo lists, step by step.

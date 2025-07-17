@@ -119,8 +119,20 @@ DungeonsTerminal/
 
 1. Check the [TODO.md](TODO.md) for current tasks
 2. Create a feature branch
-3. Use GitHub Actions for Claude Code assistance
-4. Submit pull request with detailed description
+3. **Automatic feedback**: Claude Code analyzes every push automatically
+4. Submit pull request - get AI code review automatically
+5. **Manual assistance**: Use GitHub Actions → Claude Code for direct help
+
+### 🤖 Automated AI Feedback
+
+Every code deployment gets **automatic Claude Code analysis**:
+- **Code quality review** and bug detection
+- **RPG-specific guidance** for D&D 5E mechanics
+- **Documentation sync** and updates
+- **Deployment readiness** validation
+- **Next steps** recommendations
+
+Just push code and get expert AI feedback instantly! 🎯
 
 ## 📄 License
 

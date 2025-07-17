@@ -1,12 +1,28 @@
 name: Claude Code
 
 on:
+  # Manual trigger for direct Claude requests
   workflow_dispatch:
     inputs:
       claude_request:
         description: 'Request for Claude'
         required: true
         type: string
+  
+  # Auto-trigger on code deployments
+  push:
+    branches: [ main ]
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'supabase/**'
+      - 'types/**'
+      - 'package.json'
+      - 'tsconfig.json'
+  
+  # Auto-trigger on pull requests
+  pull_request:
+    branches: [ main ]
 
 jobs:
   claude-code:
@@ -15,10 +31,84 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Install Supabase CLI
+      run: npm install -g supabase@latest
+    
+    - name: Get changed files
+      id: changed-files
+      run: |
+        if [ "${{ github.event_name }}" == "push" ]; then
+          echo "files=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }} | tr '\n' ' ')" >> $GITHUB_OUTPUT
+        else
+          echo "files=manual" >> $GITHUB_OUTPUT
+        fi
+    
     - name: Run Claude Code Action
       uses: anthropics/claude-code-action@v1
       with:
         claude_api_key: ${{ secrets.CLAUDE_API_KEY }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        request: ${{ github.event.inputs.claude_request }}
+        request: |
+          ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.claude_request || format('
+          🤖 AUTOMATED CODE REVIEW & FEEDBACK
+          
+          Repository: DungeonsTerminal RPG
+          Trigger: {0}
+          Changed files: {1}
+          
+          Please analyze the recent changes and provide:
+          
+          1. **Code Quality Review**
+             - Check for potential bugs or issues
+             - Validate TypeScript types and interfaces
+             - Review database schema changes
+             - Assess security implications
+          
+          2. **DungeonsTerminal-Specific Analysis**
+             - Ensure D&D 5E mechanics are properly implemented
+             - Validate DeepSeek AI integration patterns
+             - Check Supabase Edge Functions structure
+             - Review RPG game logic consistency
+          
+          3. **Documentation Sync Check**
+             - Verify TODO.md reflects current progress
+             - Check if README.md needs updates
+             - Validate that database types are current
+             - Ensure CLAUDE.md guidance is followed
+          
+          4. **Deployment Readiness**
+             - Check if changes are ready for production
+             - Identify any missing tests or validation
+             - Suggest improvements or optimizations
+             - Flag any breaking changes
+          
+          5. **Next Steps Recommendations**
+             - Suggest immediate follow-up tasks
+             - Identify potential technical debt
+             - Recommend performance improvements
+             - Propose new features or enhancements
+          
+          Please execute the SIMPLE SYNC PROTOCOL from CLAUDE.md if needed and commit any necessary updates.
+          
+          Focus on actionable feedback for RPG development progress! 🎮⚔️
+          ', github.event_name, steps.changed-files.outputs.files) }}
+    
+    - name: Create deployment summary
+      if: github.event_name == 'push'
+      run: |
+        echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "**Repository:** DungeonsTerminal" >> $GITHUB_STEP_SUMMARY
+        echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Files Changed:** ${{ steps.changed-files.outputs.files }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Claude Analysis:** ✅ Completed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Check the Claude Code Action output above for detailed feedback!" >> $GITHUB_STEP_SUMMARY
