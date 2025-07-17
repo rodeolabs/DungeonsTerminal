@@ -11,6 +11,45 @@ Use Context7 MCP to find technical documentation.
 All API keys can be found in the root .env file.
 Never use mock implementations or fallbacks.
 Do not use Emojis in the frontend.
+
+## 🔄 SIMPLE SYNC PROTOCOL
+
+**After ANY development work, execute this 3-step sync:**
+
+### **Step 1: Update Core Files**
+```bash
+# Update these 3 files after any changes:
+1. TODO.md - Mark completed tasks, add new ones
+2. README.md - Sync project structure and setup instructions  
+3. types/database.ts - Run: npm run types:generate if schema changed
+```
+
+### **Step 2: Database Sync**
+```bash
+# If database changed:
+1. Create migration: supabase migration new feature_name
+2. Test migration: supabase db reset
+3. Update schema documentation if needed
+```
+
+### **Step 3: Quick Validation**
+```bash
+# Basic checks:
+1. All markdown links work
+2. Setup instructions are accurate
+3. Package.json reflects current dependencies
+4. Environment variables documented in .env.example
+```
+
+### **🎯 SIMPLE CHECKLIST**
+
+Before marking any task complete:
+- [ ] TODO.md updated with progress
+- [ ] README.md reflects current state
+- [ ] Database types generated if schema changed
+- [ ] All links work
+
+**Keep it simple - focus on keeping these 4 core files synchronized!**
 Always keep the TODO.md in root updated.
 Use the logging console we implemented to get logs.
 Use detailled todo lists, step by step.
