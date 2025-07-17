@@ -2,6 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Ask me questions when tasks are unclear.
 Always comment your code and use logging.
 Use Supabase MCP for backend related tasks.
 We use both local and hosted Supabase for development workflow.
