@@ -38,11 +38,12 @@ Dungeon Terminal is a browser-based text adventure RPG that combines D&D 5E mech
   - **Edge Functions**: Server-side game logic and AI integration
 
 ### AI Integration
-- **DeepSeek R1**: Primary AI Dungeon Master
-  - Natural language processing for player commands
-  - Dynamic story generation and world building
-  - Character interaction and dialogue
-  - Combat and skill resolution
+- **DeepSeek API**: Dual-model approach for optimal performance
+  - **DeepSeek-V3 (deepseek-chat)**: Fast responses for dialogue, simple interactions
+  - **DeepSeek-R1 (deepseek-reasoner)**: Complex reasoning for combat, puzzles, strategy
+  - **Chain-of-Thought reasoning**: Advanced decision-making for complex scenarios
+  - **Cost optimization**: Off-peak pricing (50-75% discount UTC 16:30-00:30)
+  - **Context caching**: 50% cost reduction on repeated game elements
 - **Vector Search**: Semantic search through game lore and context
 - **Embeddings**: Store game world knowledge for AI context
 
@@ -92,7 +93,11 @@ supabase functions deploy         # Deploy edge functions
 - **Story Continuity**: Maintain context across game sessions
 
 ### API Integration
-- **DeepSeek R1**: Primary AI for natural language processing
+- **DeepSeek API**: Dual-model AI strategy for cost and performance optimization
+  - **Model Selection**: `deepseek-chat` for simple, `deepseek-reasoner` for complex
+  - **Context Caching**: 50% cost reduction on repeated game elements
+  - **Off-Peak Scheduling**: 50-75% discount during UTC 16:30-00:30
+  - **Token Optimization**: Structured prompts and response templates
 - **D&D 5E API**: Character sheets, spells, monsters
 - **RuneScape API**: Locations, quests, NPCs
 - **Supabase APIs**: Database operations, authentication, storage
