@@ -1,0 +1,42 @@
+{
+  "name": "dungeons-terminal",
+  "version": "1.0.0",
+  "description": "A browser-based text adventure RPG combining D&D 5E mechanics with RuneScape lore",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run dev:frontend",
+    "dev:frontend": "echo 'Frontend development server not yet configured'",
+    "dev:backend": "supabase start",
+    "build": "npm run build:frontend",
+    "build:frontend": "echo 'Frontend build not yet configured'",
+    "test": "echo 'Tests not yet configured'",
+    "db:reset": "supabase db reset",
+    "db:push": "supabase db push",
+    "db:pull": "supabase db pull",
+    "functions:serve": "supabase functions serve",
+    "functions:deploy": "supabase functions deploy",
+    "types:generate": "supabase gen types typescript --local > types/database.ts"
+  },
+  "keywords": [
+    "rpg",
+    "text-adventure",
+    "dnd",
+    "runescape",
+    "ai",
+    "deepseek",
+    "supabase"
+  ],
+  "author": "RodeoLabs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodeolabs/DungeonsTerminal.git"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0"
+  }
+}

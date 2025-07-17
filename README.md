@@ -69,8 +69,10 @@ A browser-based text adventure RPG that combines D&D 5E mechanics with RuneScape
 ## 📚 Documentation
 
 - **[CLAUDE.md](CLAUDE.md)**: Complete project architecture and guidance
-- **[DEEPSEEK_IMPLEMENTATION.md](DEEPSEEK_IMPLEMENTATION.md)**: AI integration details
+- **[docs/architecture/DEEPSEEK_IMPLEMENTATION.md](docs/architecture/DEEPSEEK_IMPLEMENTATION.md)**: AI integration details
+- **[docs/architecture/HYBRID_ARCHITECTURE.md](docs/architecture/HYBRID_ARCHITECTURE.md)**: System architecture
 - **[TODO.md](TODO.md)**: Development roadmap and progress
+- **[docs/README.md](docs/README.md)**: Complete documentation index
 
 ## 🔧 Development Workflow
 
@@ -100,13 +102,18 @@ supabase gen types typescript --local > types/database.ts
 DungeonsTerminal/
 ├── frontend/          # Web interface
 ├── backend/           # API and business logic
-├── database/          # Schema and migrations
+├── database/          # Database utilities
+├── types/             # TypeScript type definitions
+├── docs/              # Project documentation
+│   └── architecture/  # Architecture documentation
 ├── supabase/
 │   ├── functions/     # Edge Functions
 │   ├── migrations/    # Database migrations
 │   └── config.toml    # Supabase configuration
-├── docs/              # Additional documentation
-└── tests/             # Test suites
+├── tests/             # Test suites
+├── package.json       # Node.js dependencies
+├── tsconfig.json      # TypeScript configuration
+└── .env.example       # Environment template
 ```
 
 ## 🤝 Contributing
